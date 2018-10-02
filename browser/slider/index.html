@@ -30,6 +30,16 @@
         </p>
       </div>
     </div>
+    <script>
+    	const img = document.getElementById('slider');
+    	const arrImg = ['airmax.png', 'airmax-jump.png', 'airmax-on-foot.png', 'airmax-playground.png', 'airmax-top-view.png'];
+    	let currentSlide = 0;
+      setInterval(nextSlide, 1000);
+      function nextSlide(){
+        currentSlide = (currentSlide + 1) % arrImg.length;
+        img.src = `i/${arrImg[currentSlide]}`;
+      }
+    </script>
   </section>
 </body>
 </html>

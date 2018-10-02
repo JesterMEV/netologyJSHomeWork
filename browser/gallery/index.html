@@ -35,5 +35,20 @@
       </ul>
     </div>
   </article>
+  <script>
+      const img = document.getElementById('currentPhoto');
+      const nextButton = document.getElementById('nextPhoto');
+      const previousButton = document.getElementById('prevPhoto');
+      const arrImg = ['breuer-building.jpg', 'guggenheim-museum.jpg', 'headquarters.jpg', 'IAC.jpg', 'new-museum.jpg'];
+      let currentSlide = 0;
+      nextButton.onclick = function(){
+        currentSlide = (currentSlide + 1) % arrImg.length;
+        img.src = `i/${arrImg[currentSlide]}`;
+      }
+      previousButton.onclick = function(){
+        currentSlide = (currentSlide - 1) % arrImg.length;
+        img.src = `i/${arrImg[currentSlide]}`;
+      }
+  </script>
 </body>
 </html>
