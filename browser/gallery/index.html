@@ -41,13 +41,15 @@
       const previousButton = document.getElementById('prevPhoto');
       const arrImg = ['breuer-building.jpg', 'guggenheim-museum.jpg', 'headquarters.jpg', 'IAC.jpg', 'new-museum.jpg'];
       let currentSlide = 0;
+      img.src = `i/${arrImg[currentSlide]}`;
       nextButton.onclick = function(){
         currentSlide = (currentSlide + 1) % arrImg.length;
         img.src = `i/${arrImg[currentSlide]}`;
       }
       previousButton.onclick = function(){
-        currentSlide = (currentSlide - 1) % arrImg.length;
+        currentSlide = Math.abs((currentSlide - 1) % arrImg.length);
         img.src = `i/${arrImg[currentSlide]}`;
+        console.log(currentSlide);
       }
   </script>
 </body>
