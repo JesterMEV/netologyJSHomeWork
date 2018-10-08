@@ -38,5 +38,60 @@
   		</div>
   	</div>
   </div>
+  <script>
+    'use strict'
+    const trackList = ['LA Chill Tour', 'LA Fusion Jam', 'This is it band'];
+    const mediaplayer = document.getElementsByClassName('mediaplayer')[0];
+    const player = document.getElementsByTagName('audio')[0];
+    let currentTrack = 0;
+    player.src = `mp3/${trackList[currentTrack] + '.mp3'}`
+    const titleTrack = document.getElementsByClassName('title')[0];
+    titleTrack.title = `${trackList[currentTrack]}`;
+
+    const statePlay = () => {
+      mediaplayer.classList.add('play');
+      player.play();
+    }
+
+    const statePause = () => {
+      mediaplayer.classList.remove('play');
+      player.pause();
+    }
+
+    document.getElementsByClassName('playstate')[0].onclick = () => {
+      if (mediaplayer.classList.contains('play')) {
+        statePause();
+      } else {
+        statePlay();
+      }
+    }
+
+    document.getElementsByClassName('stop')[0].onclick = () => {
+      statePause();
+      player.currentTime = 0;
+    }
+
+    document.getElementsByClassName('next')[0].onclick = () => {
+      if (currentTrack < trackList.length - 1) {
+        currentTrack = ++currentTrack;
+      } else {
+        currentTrack = 0;
+      }
+      player.src = `mp3/${trackList[currentTrack] + '.mp3'}`;
+      titleTrack.title = `${trackList[currentTrack]}`;
+      statePlay();
+    }
+
+    document.getElementsByClassName('back')[0].onclick = () => {
+      if (currentTrack >= 1) {
+        currentTrack = --currentTrack;
+      } else {
+        currentTrack = trackList.length - 1;
+      }
+      player.src = `mp3/${trackList[currentTrack] + '.mp3'}`;
+      titleTrack.title = `${trackList[currentTrack]}`;
+      statePlay();
+    }
+  </script>
 </body>
 </html>

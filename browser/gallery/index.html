@@ -36,21 +36,29 @@
     </div>
   </article>
   <script>
-      const img = document.getElementById('currentPhoto');
-      const nextButton = document.getElementById('nextPhoto');
-      const previousButton = document.getElementById('prevPhoto');
-      const arrImg = ['breuer-building.jpg', 'guggenheim-museum.jpg', 'headquarters.jpg', 'IAC.jpg', 'new-museum.jpg'];
-      let currentSlide = 0;
+  	'use strict'
+    const img = document.getElementById('currentPhoto');
+    const nextButton = document.getElementById('nextPhoto');
+    const previousButton = document.getElementById('prevPhoto');
+    const arrImg = ['breuer-building.jpg', 'guggenheim-museum.jpg', 'headquarters.jpg', 'IAC.jpg', 'new-museum.jpg'];
+    let currentSlide = 0;
+    img.src = `i/${arrImg[currentSlide]}`;
+    nextButton.onclick = function(){
+      if (currentSlide < arrImg.length - 1) {
+        currentSlide = ++currentSlide;
+      } else {
+        currentSlide = 0;
+      }
       img.src = `i/${arrImg[currentSlide]}`;
-      nextButton.onclick = function(){
-        currentSlide = (currentSlide + 1) % arrImg.length;
-        img.src = `i/${arrImg[currentSlide]}`;
+    }
+    previousButton.onclick = function(){
+      if (currentSlide >= 1) {
+        currentSlide = --currentSlide;
+      } else {
+        currentSlide = arrImg.length - 1;
       }
-      previousButton.onclick = function(){
-        currentSlide = Math.abs((currentSlide - 1) % arrImg.length);
-        img.src = `i/${arrImg[currentSlide]}`;
-        console.log(currentSlide);
-      }
+      img.src = `i/${arrImg[currentSlide]}`;
+    }
   </script>
 </body>
 </html>
