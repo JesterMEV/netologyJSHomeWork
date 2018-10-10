@@ -45,5 +45,26 @@
       </svg>
     </div>
   </main>
+  <script >
+    'use strict'
+    const showMenu = function(event) {
+      if (event.ctrlKey && event.altKey && event.code === 'KeyT') {
+        document.getElementsByTagName('nav')[0].classList.toggle('visible');
+      } 
+    }
+    document.addEventListener('keydown', showMenu);
+    const secretWord = [89, 84, 78, 74, 75, 74, 85, 66, 90];
+    let userString = [];
+    const handleKey = function(event) {
+      userString.push(event.keyCode)
+      for (let i = 0; i < secretWord.length; ++i){
+        if (userString[i] !== secretWord[i]) {
+          return false;
+          }
+      }
+      document.getElementsByClassName('secret')[0].classList.toggle('visible');
+    }
+    document.addEventListener('keydown', handleKey);
+  </script>
 </body>
 </html>
