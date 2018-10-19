@@ -31,29 +31,28 @@
   </fieldset>
   <script>
     'use strict'
-    let listBlock = document.querySelector('.list-block');
-    let taskList = listBlock.querySelectorAll('input[type="checkbox"]');
-    let taskCounter = 0;
-    for (let task of taskList) {
-        console.log(task)
-        if (task.checked) {
-          taskCounter ++;
-        } else  {
-          taskCounter --;
-        }
-      }
 
-    const activeCheck = function(event){
-      event.currentTarget.checked;
+    let listBlock = document.querySelector('.list-block');
+    let taskList = listBlock.querySelectorAll('input');
+    let counter = 0;
+    const listChange = function(event) {
+      if(event.currentTarget.checked) {
+        counter++;
+      } else {
+        counter--;
+      }
+      console.log(event);
     }
+
+    
 
     const init = function() {
-      for (let task of taskList)
-        task.addEventListener('change', activeCheck)
+      for (let task of taskList) {
+        task.addEventListener('click', listChange);
+      }
     }
-
-    listBlock.getElementsByTagName('output')[0].value = `${taskCounter}`;
-    document.addEventListener('DOMContentLoaded', init);
+    listBlock.getElementsByTagName('output')[0].value = `${counter} из 4`;
+    document.addEventListener('DOMContentLoaded', init)
   </script>
 </body>
 </html>
