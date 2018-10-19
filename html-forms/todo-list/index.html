@@ -31,17 +31,17 @@
   </fieldset>
   <script>
     'use strict'
-
+    let counter = 0;
     let listBlock = document.querySelector('.list-block');
     let taskList = listBlock.querySelectorAll('input');
-    let counter = 0;
     const listChange = function(event) {
-      if(event.currentTarget.checked) {
-        counter++;
+      event.currentTarget.checked === true ? counter++ : counter--;
+      listBlock.getElementsByTagName('output')[0].value = `${counter} из ${taskList.length}`;
+      if (counter === taskList.length) {
+        listBlock.classList.add('complete');
       } else {
-        counter--;
+        listBlock.classList.remove('complete');
       }
-      console.log(event);
     }
 
     
@@ -49,9 +49,13 @@
     const init = function() {
       for (let task of taskList) {
         task.addEventListener('click', listChange);
+        if (task.checked) {
+          counter++;
+        }
       }
+      listBlock.getElementsByTagName('output')[0].value = `${counter} из ${taskList.length}`;
     }
-    listBlock.getElementsByTagName('output')[0].value = `${counter} из 4`;
+    
     document.addEventListener('DOMContentLoaded', init)
   </script>
 </body>
