@@ -2,28 +2,23 @@
 
 let item = document.getElementById('content');
 let xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://neto-api.herokuapp.com/book/', false);
+xhr.open('GET', 'https://netology-fbb-store-api.herokuapp.com/book/');
 xhr.send();
 
-
-
-const someFunc = function() {
-    console.log(xhr.responseText)
-    let randomVal = JSON.parse(xhr.responseText).reduce((fullString, el) => {
-    return fullString += `<li 
-     data-title="${el.title}"
-     data-author="${el.author.name}"
-     data-info="${el.info}"
-     data-price="${el.price}">
-     <img
-     src="${el.cover.small}">
-     </li>`;
-
-  }, ``);
-  return randomVal;
+const getDateBooks = function() {
+    if (xhr.status === 200) {
+       return JSON.parse(xhr.responseText).reduce((fullString, el) => {
+        return fullString += `<li 
+         data-title="${el.title}"
+         data-author="${el.author.name}"
+         data-info="${el.info}"
+         data-price="${el.price}">
+         <img
+         src="${el.cover.small}">
+         </li>`;
+      }, ``);
+    }
 }
 
-
-
-document.getElementById('content').innerHTML = someFunc();
-xhr.addEventListener('load', someFunc)
+xhr.addEventListener('load', getDateBooks);
+document.getElementById('content').innerHTML = getDateBooks();
